@@ -19,7 +19,7 @@ msgstr ""
 
 msgctxt "#30010"
 msgid "DVB driver select"
-msgstr "DVB driver select "
+msgstr "DVB driver select"
 
 msgctxt "#30011"
 msgid "Select driver"
@@ -31,7 +31,7 @@ msgstr "System Neustart erforderlich"
 
 msgctxt "#30013"
 msgid "You changed the system driver. A system reboot is required for the new driver to work properly. Would you like to reboot the system now?"
-msgstr "Du hast den Systemtreiber gewechselt. Damit der neue Treiber ordnungsgemäß arbeitet, ist ein System-Neustart erforderlich. Möchtest Du das System jetzt neu starten?"
+msgstr "Der Systemtreiber wurde gewechselt. Damit der neue Treiber ordnungsgemäß arbeitet, ist ein Neustart erforderlich. Soll das System jetzt neu gestartet werden?"
 
 msgctxt "#30014"
 msgid "Driver changed, reboot required!"

@@ -66,9 +66,9 @@ if response is not None:
                     else:
                         writeLog('could not reboot', xbmc.LOGFATAL)
                 else:
-                    notify(LS(30010), LS(30014))
+                    notify(LS(30010), LS(30014), icon=xbmcgui.NOTIFICATION_WARNING)
             else:
                 writeLog('could not enable driver module \'%s\'' % (addon_list[driver_module]['addonid']), xbmc.LOGFATAL)
     else:
         writeLog('no driver modules found', xbmc.LOGFATAL)
-        notify(LS(30010), LS(30015))
+        notify(LS(30010), LS(30015), icon=xbmcgui.NOTIFICATION_WARNING)

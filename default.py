@@ -1,6 +1,6 @@
 from resources.lib.tools import *
 
-writeLog('starting addon')
+writeLog('starting addon', xbmc.LOGNOTICE)
 query = {"method": "Addons.GetAddons",
          "params": {"type": "xbmc.service",
                     "properties": ["name", "path", "enabled"]}}
@@ -31,9 +31,8 @@ if response is not None:
 
     if item > 0:
         driver_module = dialogSelect(LS(30011), gui_list)
-        writeLog('selected item: %s' % (driver_module))
-
         if driver_module > -1:
+            writeLog('selected item: %s' % (addon_list[driver_module]['addonid']), xbmc.LOGNOTICE)
 
             # disable old driver module(s)
 
@@ -42,7 +41,7 @@ if response is not None:
                          "params":{"addonid": dvbmodule, "enabled": False}}
                 response = jsonrpc(query)
                 if response == 'OK':
-                    writeLog('driver module \'%s\' disabled' % (dvbmodule))
+                    writeLog('driver module \'%s\' disabled' % (dvbmodule), xbmc.LOGNOTICE)
                 else:
                     writeLog('could not disable driver module \'%s\'' % (dvbmodule), xbmc.LOGFATAL)
 
@@ -52,7 +51,7 @@ if response is not None:
                      "params": {"addonid": addon_list[driver_module]['addonid'], "enabled": True}}
             response = jsonrpc(query)
             if response == 'OK':
-                writeLog('driver module \'%s\' enabled' % (addon_list[driver_module]['addonid']))
+                writeLog('driver module \'%s\' enabled' % (addon_list[driver_module]['addonid']), xbmc.LOGNOTICE)
 
                 # ask for reboot
 
@@ -62,13 +61,15 @@ if response is not None:
                              "params":{}}
                     response = jsonrpc(query)
                     if response == 'OK':
-                        writeLog('system will now reboot')
+                        writeLog('system will now reboot', xbmc.LOGNOTICE)
                     else:
                         writeLog('could not reboot', xbmc.LOGFATAL)
                 else:
                     notify(LS(30010), LS(30014), icon=xbmcgui.NOTIFICATION_WARNING)
             else:
                 writeLog('could not enable driver module \'%s\'' % (addon_list[driver_module]['addonid']), xbmc.LOGFATAL)
+        else:
+            writeLog('selection aborted')
     else:
         writeLog('no driver modules found', xbmc.LOGFATAL)
         notify(LS(30010), LS(30015), icon=xbmcgui.NOTIFICATION_WARNING)

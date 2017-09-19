@@ -85,7 +85,7 @@ if response is not None:
                 else:
                     writeLog('could not enable driver module \'%s\'' % (gui_list[driver_module].getProperty('name')), xbmc.LOGFATAL)
             else:
-                writelog('module does\'nt changed, no further actions required')
+                writeLog('module doesn\'t changed, no further actions required')
         else:
             writeLog('selection aborted')
     else:

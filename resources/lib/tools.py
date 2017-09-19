@@ -4,7 +4,6 @@ import xbmcaddon
 import json
 import platform
 import re
-import os
 
 ADDON_NAME = xbmcaddon.Addon().getAddonInfo('name')
 PATH = xbmcaddon.Addon().getAddonInfo('path')

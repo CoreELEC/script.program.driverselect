@@ -4,6 +4,7 @@ import xbmcaddon
 import json
 import platform
 import re
+import os
 
 ADDON_NAME = xbmcaddon.Addon().getAddonInfo('name')
 PATH = xbmcaddon.Addon().getAddonInfo('path')
@@ -48,11 +49,8 @@ def dialogYesNo(header, message):
     return xbmcgui.Dialog().yesno(header.encode('utf-8'), message.encode('utf-8'))
 
 
-def dialogSelect(header, itemlist):
-    _itemlist = []
-    for item in itemlist:
-        _itemlist.append(item.encode('utf-8'))
-    return xbmcgui.Dialog().select(header.encode('utf-8'), _itemlist)
+def dialogSelect(header, itemlist, preselect=-1, useDetails=False):
+    return xbmcgui.Dialog().select(header.encode('utf-8'), itemlist, preselect=preselect, useDetails=useDetails)
 
 
 def jsonrpc(query):

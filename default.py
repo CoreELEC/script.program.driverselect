@@ -1,38 +1,51 @@
 from resources.lib.tools import *
 
+ADDON_TYPE = 'xbmc.service'
+SIGNATURE = 'driver.dvb.'
+ICON_FALLBACK = os.path.join(xbmc.translatePath(PATH), 'lib', 'fallback.png')
+
 writeLog('starting addon', xbmc.LOGNOTICE)
 query = {"method": "Addons.GetAddons",
-         "params": {"type": "xbmc.service",
-                    "properties": ["name", "path", "enabled"]}}
+         "params": {"type": ADDON_TYPE,
+                    "properties": ["description", "enabled", "name", "path", "thumbnail", "version"]}}
 response = jsonrpc(query)
+
 if response is not None:
     writeLog('get services')
 
-    addon_list = {}
     gui_list = []
     modules = []
     item = 0
+    preselection = -1
 
     # get all services, discard services without driver.dvb signature
 
     for service in response['addons']:
-        if not 'driver.dvb.' in service.get('addonid', ''): continue
-        addon_list.update({item: {'name': service.get('name', ''),
-                                'addonid': service.get('addonid', ''),
-                                'enabled': service.get('enabled', False)}})
-        if service.get('enabled', False):
-            gui_list.append('[B]' + service.get('name', '') + '[/B]')
+        if not SIGNATURE in service.get('addonid', ''): continue
+        liz = xbmcgui.ListItem(label='%s V%s' % (service.get('name') or LS(30017), service.get('version') or '0.0.0'),
+                               label2=service.get('description') or LS(30016),
+                               iconImage=service.get('thumbnail', ICON_FALLBACK))
+        liz.setProperty('addonid', service.get('addonid'))
+        liz.setProperty('enabled', str(service.get('enabled', False)))
+        liz.setProperty('path', service.get('path'))
+        gui_list.append(liz)
+
+        # collect all activated modules
+
+        if bool(service.get('enabled')):
+            if preselection == -1:
+                preselection = item
+                writeLog('preselect item no. %s' % (item))
             modules.append(service.get('addonid'))
-        else:
-            gui_list.append(service.get('name', ''))
+
         item += 1
 
     # show selections
 
     if item > 0:
-        driver_module = dialogSelect(LS(30011), gui_list)
+        driver_module = dialogSelect(LS(30011), gui_list, preselect=preselection, useDetails=True)
         if driver_module > -1:
-            writeLog('selected item: %s' % (addon_list[driver_module]['addonid']), xbmc.LOGNOTICE)
+            writeLog('selected item: %s' % gui_list[driver_module].getProperty('addonid'), xbmc.LOGNOTICE)
 
             # disable old driver module(s)
 
@@ -48,10 +61,10 @@ if response is not None:
             # enable new driver module
 
             query = {"method": "Addons.SetAddonEnabled",
-                     "params": {"addonid": addon_list[driver_module]['addonid'], "enabled": True}}
+                     "params": {"addonid": gui_list[driver_module].getProperty('addonid'), "enabled": True}}
             response = jsonrpc(query)
             if response == 'OK':
-                writeLog('driver module \'%s\' enabled' % (addon_list[driver_module]['addonid']), xbmc.LOGNOTICE)
+                writeLog('driver module \'%s\' enabled' % (gui_list[driver_module].getProperty('Label')), xbmc.LOGNOTICE)
 
                 # ask for reboot
 
@@ -67,7 +80,7 @@ if response is not None:
                 else:
                     notify(LS(30010), LS(30014), icon=xbmcgui.NOTIFICATION_WARNING)
             else:
-                writeLog('could not enable driver module \'%s\'' % (addon_list[driver_module]['addonid']), xbmc.LOGFATAL)
+                writeLog('could not enable driver module \'%s\'' % (gui_list[driver_module].getProperty('Label')), xbmc.LOGFATAL)
         else:
             writeLog('selection aborted')
     else:

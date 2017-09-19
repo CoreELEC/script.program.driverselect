@@ -27,6 +27,7 @@ if response is not None:
                                iconImage=service.get('thumbnail', ICON_FALLBACK))
         liz.setProperty('addonid', service.get('addonid'))
         liz.setProperty('enabled', str(service.get('enabled', False)))
+        liz.setProperty('name', service.get('name') or LS(30017))
         liz.setProperty('path', service.get('path'))
         gui_list.append(liz)
 
@@ -64,7 +65,7 @@ if response is not None:
                      "params": {"addonid": gui_list[driver_module].getProperty('addonid'), "enabled": True}}
             response = jsonrpc(query)
             if response == 'OK':
-                writeLog('driver module \'%s\' enabled' % (gui_list[driver_module].getProperty('Label')), xbmc.LOGNOTICE)
+                writeLog('driver module \'%s\' enabled' % (gui_list[driver_module].getProperty('name')), xbmc.LOGNOTICE)
 
                 # ask for reboot
 
@@ -80,7 +81,7 @@ if response is not None:
                 else:
                     notify(LS(30010), LS(30014), icon=xbmcgui.NOTIFICATION_WARNING)
             else:
-                writeLog('could not enable driver module \'%s\'' % (gui_list[driver_module].getProperty('Label')), xbmc.LOGFATAL)
+                writeLog('could not enable driver module \'%s\'' % (gui_list[driver_module].getProperty('name')), xbmc.LOGFATAL)
         else:
             writeLog('selection aborted')
     else:

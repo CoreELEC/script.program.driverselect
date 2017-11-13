@@ -48,3 +48,27 @@ msgstr "Keine Beschreibung für dieses Modul vorhanden"
 msgctxt "#30017"
 msgid "unknown"
 msgstr "unbekannt"
+
+msgctxt "#30018"
+msgid "You have all module drivers disabled. A system reboot is required to work properly. Would you like to reboot the system now?"
+msgstr "Alle Modultreiber wurden zurückgesetzt. Damit das System ordnungsgemäß arbeitet, ist ein Neustart erforderlich. Soll das System jetzt neu gestartet werden?"
+
+msgctxt "#30020"
+msgid "Please select"
+msgstr "Bitte auswählen"
+
+msgctxt "#30021"
+msgid "choose DVB service module"
+msgstr "DVB Service Modul auswählen"
+
+msgctxt "#30022"
+msgid "choose video service module"
+msgstr "Video Service Modul auswählen"
+
+msgctxt "#30023"
+msgid "choose network service module"
+msgstr "Netzwerk Service Modul auswählen"
+
+msgctxt "#30024"
+msgid "disable all service modules"
+msgstr "alle Service Module zurücksetzen"

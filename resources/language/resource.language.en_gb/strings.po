@@ -48,3 +48,27 @@ msgstr ""
 msgctxt "#30017"
 msgid "unknown"
 msgstr ""
+
+msgctxt "#30018"
+msgid "You have all module drivers disabled. A system reboot is required to work properly. Would you like to reboot the system now?"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Please select"
+msgstr ""
+
+msgctxt "#30021"
+msgid "choose DVB service module"
+msgstr ""
+
+msgctxt "#30022"
+msgid "choose video service module"
+msgstr ""
+
+msgctxt "#30023"
+msgid "choose network service module"
+msgstr ""
+
+msgctxt "#30024"
+msgid "disable all service modules"
+msgstr ""

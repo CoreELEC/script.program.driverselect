@@ -58,8 +58,8 @@ msgid "Could not access addon libriray"
 msgstr "Kein Zugriff auf die Addon-Bibliothek"
 
 msgctxt "#30020"
-msgid "Please select"
-msgstr "Bitte auswählen"
+msgid "Please select category"
+msgstr "Bitte Kategorie auswählen"
 
 msgctxt "#30021"
 msgid "Choose DVB driver module"

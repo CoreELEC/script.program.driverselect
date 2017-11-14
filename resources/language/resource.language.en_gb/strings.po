@@ -58,7 +58,7 @@ msgid "Could not access addon libriray"
 msgstr ""
 
 msgctxt "#30020"
-msgid "Please select"
+msgid "Please select category"
 msgstr ""
 
 msgctxt "#30021"

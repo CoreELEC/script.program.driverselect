@@ -1,7 +1,7 @@
 # XBMC Media Center language file
 # Addon Name: DVB driver select
 # Addon id: script.program.driverselect
-# Addon version: 0.0.1
+# Addon version: 0.1.0
 # Addon Provider: Birger Jesch
 msgid ""
 msgstr ""
@@ -53,22 +53,26 @@ msgctxt "#30018"
 msgid "You have all module drivers disabled. A system reboot is required to work properly. Would you like to reboot the system now?"
 msgstr ""
 
+msgctxt "#30019"
+msgid "Could not access addon libriray"
+msgstr ""
+
 msgctxt "#30020"
 msgid "Please select"
 msgstr ""
 
 msgctxt "#30021"
-msgid "choose DVB service module"
+msgid "Choose DVB driver module"
 msgstr ""
 
 msgctxt "#30022"
-msgid "choose video service module"
+msgid "Choose video driver module"
 msgstr ""
 
 msgctxt "#30023"
-msgid "choose network service module"
+msgid "Choose network driver module"
 msgstr ""
 
 msgctxt "#30024"
-msgid "disable all service modules"
+msgid "Disable all driver modules"
 msgstr ""

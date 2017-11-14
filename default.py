@@ -60,7 +60,7 @@ if modules is not None:
             if not signature in module.get('addonid', ''):
                 writeLog('discard \'%s\'' % (module.get('addonid', 'unknown')))
                 continue
-            liz = xbmcgui.ListItem(label='%s V%s' % (module.get('name') or LS(30017), module.get('version') or '0.0.0'),
+            liz = xbmcgui.ListItem(label=module.get('name') or LS(30017),
                                    label2=module.get('description') or LS(30016),
                                    iconImage=module.get('thumbnail', ICON_FALLBACK))
             if module.get('enabled', False):

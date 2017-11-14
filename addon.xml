@@ -8,10 +8,10 @@
     <extension point="xbmc.addon.metadata">
         <summary lang="en_gb">LibreELEC driver selection</summary>
         <description lang="en_gb">Select and install a suitable driver module for your hardware.</description>
-        <disclaimer lang="en_gb">Use at your own risk.</disclaimer>
+        <disclaimer lang="en_gb">Use at your own risk. No guarantee that this addon works as expected.</disclaimer>
         <summary lang="de_de">LibreELEC Treibermodul Auswahl</summary>
         <description lang="de_de">Wähle und installiere ein passendes Treibermodul für Deine Hardware.</description>
-        <disclaimer lang="de_de">Benutzung auf eigene Gefahr.</disclaimer>
+        <disclaimer lang="de_de">Benutzung auf eigene Gefahr. Keine Garantie, daß das Addon wie erwartet funktioniert.</disclaimer>
         <platform>linux</platform>
         <license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>
         <forum></forum>

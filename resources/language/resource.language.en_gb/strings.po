@@ -18,11 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgctxt "#30010"
-msgid "DVB driver select"
+msgid "LibreElec driver select"
 msgstr ""
 
 msgctxt "#30011"
-msgid "Select driver"
+msgid "Select driver module"
 msgstr ""
 
 msgctxt "#30012"

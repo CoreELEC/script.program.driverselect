@@ -18,12 +18,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgctxt "#30010"
-msgid "DVB driver select"
-msgstr "DVB driver select"
+msgid "LibreElec driver select"
+msgstr "LibreElec driver select"
 
 msgctxt "#30011"
-msgid "Select driver"
-msgstr "Treiber auswählen"
+msgid "Select driver module"
+msgstr "Treibermodul auswählen"
 
 msgctxt "#30012"
 msgid "System Reboot required"

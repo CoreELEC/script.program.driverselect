@@ -75,7 +75,8 @@ if modules is not None:
         writeLog('%s modules added to group %s' % (len(gui_list[group]), signature[:-1]))
         group += 1
 
-    # show main list
+    # show main list (preselection)
+
     mainItem = dialogSelect(LS(30020), [LS(30021), LS(30022), LS(30023), LS(30024)])
     if mainItem > -1:
         if 0 <= mainItem <= 2:

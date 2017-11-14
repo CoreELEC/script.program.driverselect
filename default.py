@@ -84,7 +84,7 @@ if modules is not None:
                     # disable all modules of module group
                     for module in gui_list[mainItem]: set_addon(module.getProperty('addonid'), False)
                     # and enable the new one
-                    set_addon(gui_list[mainItem].getProperty('addonid'), True)
+                    set_addon(gui_list[mainItem][moduleItem].getProperty('addonid'), True)
                     ask_for_reboot(0)
                 else:
                     writeLog('aborted or module doesn\'t changed, no further actions required')

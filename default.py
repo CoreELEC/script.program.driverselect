@@ -57,9 +57,7 @@ if modules is not None:
         item = 0
 
         for module in modules['addons']:
-            if not signature in module.get('addonid', ''):
-                writeLog('discard \'%s\'' % (module.get('addonid', 'unknown')))
-                continue
+            if not signature in module.get('addonid', ''): continue
             liz = xbmcgui.ListItem(label=module.get('name') or LS(30017),
                                    label2=module.get('description') or LS(30016),
                                    iconImage=module.get('thumbnail', ICON_FALLBACK))

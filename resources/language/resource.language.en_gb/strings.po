@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgctxt "#30010"
-msgid "LibreElec driver select"
+msgid "LibreELEC driver select"
 msgstr ""
 
 msgctxt "#30011"
@@ -50,11 +50,11 @@ msgid "unknown"
 msgstr ""
 
 msgctxt "#30018"
-msgid "You have all module drivers disabled. A system reboot is required to work properly. Would you like to reboot the system now?"
+msgid "You have module drivers disabled. A system reboot is required to work properly. Would you like to reboot the system now?"
 msgstr ""
 
 msgctxt "#30019"
-msgid "Could not access addon libriray"
+msgid "Could not access addon library"
 msgstr ""
 
 msgctxt "#30020"

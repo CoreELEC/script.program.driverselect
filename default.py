@@ -3,8 +3,8 @@ import os
 
 ADDON_TYPE = 'xbmc.service'
 SIGNATURES = ['driver.dvb.', 'driver.video.', 'driver.net.']
-ICON_FALLBACK = os.path.join(xbmc.translatePath(PATH), 'lib', 'fallback.png')
-ICON_DEFAULT = os.path.join(xbmc.translatePath(PATH), 'lib', 'default.png')
+ICON_FALLBACK = os.path.join(xbmc.translatePath(PATH), 'resources', 'fallback.png')
+ICON_DEFAULT = os.path.join(xbmc.translatePath(PATH), 'resources', 'default.png')
 
 # functions
 
@@ -55,7 +55,7 @@ if modules is not None:
     for signature in SIGNATURES:
         gui_list.append([])
         selections.append(-1)
-        item = 0
+        item = 1
 
         liz = xbmcgui.ListItem(label=LS(30024), label2=LS(30025 + group), iconImage=ICON_DEFAULT)
         liz.setProperty('addonid', 'dummy')
@@ -75,7 +75,7 @@ if modules is not None:
             gui_list[group].append(liz)
             item += 1
 
-        writeLog('%s modules added to group %s' % (len(gui_list[group]), signature[:-1]))
+        writeLog('%s modules added to group %s' % (len(gui_list[group] - 1), signature[:-1]))
         group += 1
 
     # build main list, discard empty module lists

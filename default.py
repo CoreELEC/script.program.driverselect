@@ -4,6 +4,7 @@ import os
 ADDON_TYPE = 'xbmc.service'
 SIGNATURES = ['driver.dvb.', 'driver.video.', 'driver.net.']
 ICON_FALLBACK = os.path.join(xbmc.translatePath(PATH), 'lib', 'fallback.png')
+ICON_DEFAULT = os.path.join(xbmc.translatePath(PATH), 'lib', 'default.png')
 
 # functions
 
@@ -56,7 +57,7 @@ if modules is not None:
         selections.append(-1)
         item = 0
 
-        liz = xbmcgui.ListItem(label=LS(30024), label2=LS(30025 + group), iconImage=ICON_FALLBACK)
+        liz = xbmcgui.ListItem(label=LS(30024), label2=LS(30025 + group), iconImage=ICON_DEFAULT)
         liz.setProperty('addonid', 'dummy')
         gui_list[group].append(liz)
 
@@ -77,28 +78,35 @@ if modules is not None:
         writeLog('%s modules added to group %s' % (len(gui_list[group]), signature[:-1]))
         group += 1
 
-    # show main list (preselection)
+    # build main list, discard empty module lists
 
-    mainItem = dialogSelect(LS(30020), [LS(30021), LS(30022), LS(30023)])
-    if mainItem > -1:
-        if len(gui_list[mainItem]) > 1:
-            moduleItem = dialogSelect(LS(30011), gui_list[mainItem], preselect=selections[mainItem], useDetails=True)
-            if moduleItem > -1 and moduleItem != selections[mainItem]:
+    group = 0
+    MainItems = []
+    for items in gui_list:
+        if len(items) > 1: MainItems.append(LS(30021 + group))
+        group += 1
+
+    if len(MainItems) > 0:
+        # show main list (preselection)
+
+        selectedMainItem = dialogSelect(LS(30020), MainItems)
+        if selectedMainItem > -1:
+            selectedModuleItem = dialogSelect(LS(30011), gui_list[selectedMainItem], preselect=selections[selectedMainItem], useDetails=True)
+            if selectedModuleItem > -1 and selectedModuleItem != selections[selectedMainItem]:
                 # disable all modules of module group
-                for module in gui_list[mainItem]:
+                for module in gui_list[selectedMainItem]:
                     if module.getProperty('addonid') != 'dummy': set_addon(module.getProperty('addonid'), False)
                 # and enable the new one
-                if gui_list[mainItem][moduleItem].getProperty('addonid') != 'dummy':
-                    set_addon(gui_list[mainItem][moduleItem].getProperty('addonid'), True)
+                if gui_list[selectedMainItem][selectedModuleItem].getProperty('addonid') != 'dummy':
+                    set_addon(gui_list[selectedMainItem][selectedModuleItem].getProperty('addonid'), True)
                     ask_for_reboot(0)
                 else:
                     ask_for_reboot(1)
             else:
                 writeLog('aborted or module doesn\'t changed, no further actions required')
-        else:
-            writeLog('no driver modules found', xbmc.LOGERROR)
-            notify(LS(30010), LS(30015), icon=xbmcgui.NOTIFICATION_WARNING)
-
+    else:
+        writeLog('no driver modules found')
+        notify(LS(30010), LS(30015), xbmcgui.NOTIFICATION_WARNING)
 else:
     writeLog('Could not access addon library', xbmc.LOGERROR)
-    notify(LS(30010), LS(), icon=xbmcgui.NOTIFICATION_ERROR)
+    notify(LS(30010), LS(30019), icon=xbmcgui.NOTIFICATION_ERROR)

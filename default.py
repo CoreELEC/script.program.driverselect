@@ -75,7 +75,7 @@ if modules is not None:
             gui_list[group].append(liz)
             item += 1
 
-        writeLog('%s modules added to group %s' % (len(gui_list[group] - 1), signature[:-1]))
+        writeLog('%s modules added to group %s' % (len(gui_list[group]) - 1, signature[:-1]))
         group += 1
 
     # build main list, discard empty module lists

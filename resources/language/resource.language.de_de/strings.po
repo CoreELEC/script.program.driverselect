@@ -58,21 +58,33 @@ msgid "Could not access addon library"
 msgstr "Kein Zugriff auf die Addon-Bibliothek"
 
 msgctxt "#30020"
-msgid "Please select category"
-msgstr "Bitte Kategorie auswählen"
+msgid "Select category"
+msgstr "Kategorie auswählen"
 
 msgctxt "#30021"
 msgid "Choose DVB driver module"
-msgstr "DVB Service Modul auswählen"
+msgstr "DVB Treiber Modul auswählen"
 
 msgctxt "#30022"
 msgid "Choose video driver module"
-msgstr "Video Service Modul auswählen"
+msgstr "Video Treiber Modul auswählen"
 
 msgctxt "#30023"
 msgid "Choose network driver module"
-msgstr "Netzwerk Service Modul auswählen"
+msgstr "Netzwerk Treiber Modul auswählen"
 
 msgctxt "#30024"
-msgid "Disable all driver modules"
-msgstr "alle Service Module zurücksetzen"
+msgid "LE default drivers"
+msgstr "LE Standard Treiber"
+
+msgctxt "#30025"
+msgid "DVB drivers from standard package"
+msgstr "DVB Treiber aus der Standardinstallation"
+
+msgctxt "#30026"
+msgid "Video drivers from standard package"
+msgstr "Videotreiber aus der Standardinstallation"
+
+msgctxt "#30027"
+msgid "Network drivers from standard package"
+msgstr "Netzwerktreiber aus der Standardinstallation"

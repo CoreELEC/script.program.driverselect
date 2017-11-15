@@ -58,7 +58,7 @@ msgid "Could not access addon library"
 msgstr ""
 
 msgctxt "#30020"
-msgid "Please select category"
+msgid "Select category"
 msgstr ""
 
 msgctxt "#30021"
@@ -74,5 +74,18 @@ msgid "Choose network driver module"
 msgstr ""
 
 msgctxt "#30024"
-msgid "Disable all driver modules"
+msgid "LE default drivers"
 msgstr ""
+
+msgctxt "#30025"
+msgid "DVB drivers from standard package"
+msgstr ""
+
+msgctxt "#30026"
+msgid "Video drivers from standard package"
+msgstr ""
+
+msgctxt "#30027"
+msgid "Network drivers from standard package"
+msgstr ""
+

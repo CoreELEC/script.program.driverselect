@@ -56,6 +56,10 @@ if modules is not None:
         selections.append(-1)
         item = 0
 
+        liz = xbmcgui.ListItem(label=LS(30024), label2=LS(30025 + group), iconImage=ICON_FALLBACK)
+        liz.setProperty('addonid', 'dummy')
+        gui_list[group].append(liz)
+
         for module in modules['addons']:
             if not signature in module.get('addonid', ''): continue
             liz = xbmcgui.ListItem(label=module.get('name') or LS(30017),
@@ -75,31 +79,26 @@ if modules is not None:
 
     # show main list (preselection)
 
-    mainItem = dialogSelect(LS(30020), [LS(30021), LS(30022), LS(30023), LS(30024)])
+    mainItem = dialogSelect(LS(30020), [LS(30021), LS(30022), LS(30023)])
     if mainItem > -1:
-        if 0 <= mainItem <= 2:
-            if len(gui_list[mainItem]) > 0:
-                moduleItem = dialogSelect(LS(30011), gui_list[mainItem], preselect=selections[mainItem], useDetails=True)
-                if moduleItem > -1 and moduleItem != selections[mainItem]:
-                    # disable all modules of module group
-                    for module in gui_list[mainItem]: set_addon(module.getProperty('addonid'), False)
-                    # and enable the new one
+        if len(gui_list[mainItem]) > 1:
+            moduleItem = dialogSelect(LS(30011), gui_list[mainItem], preselect=selections[mainItem], useDetails=True)
+            if moduleItem > -1 and moduleItem != selections[mainItem]:
+                # disable all modules of module group
+                for module in gui_list[mainItem]:
+                    if module.getProperty('addonid') != 'dummy': set_addon(module.getProperty('addonid'), False)
+                # and enable the new one
+                if gui_list[mainItem][moduleItem].getProperty('addonid') != 'dummy':
                     set_addon(gui_list[mainItem][moduleItem].getProperty('addonid'), True)
                     ask_for_reboot(0)
                 else:
-                    writeLog('aborted or module doesn\'t changed, no further actions required')
-
+                    ask_for_reboot(1)
             else:
-                writeLog('no driver modules found', xbmc.LOGERROR)
-                notify(LS(30010), LS(30015), icon=xbmcgui.NOTIFICATION_WARNING)
+                writeLog('aborted or module doesn\'t changed, no further actions required')
         else:
-            # Disable all Modules
+            writeLog('no driver modules found', xbmc.LOGERROR)
+            notify(LS(30010), LS(30015), icon=xbmcgui.NOTIFICATION_WARNING)
 
-            for signature in SIGNATURES:
-                for module in modules['addons']:
-                    if not signature in module.get('addonid', ''): continue
-                    set_addon(module, False)
-            ask_for_reboot(1)
 else:
     writeLog('Could not access addon library', xbmc.LOGERROR)
     notify(LS(30010), LS(), icon=xbmcgui.NOTIFICATION_ERROR)

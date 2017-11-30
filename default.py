@@ -1,7 +1,7 @@
 from resources.lib.tools import *
 import os
 
-ADDON_TYPE = 'xbmc.service'
+ADDON_TYPE = 'xbmc.python.module'
 SIGNATURES = ['driver.dvb.', 'driver.video.', 'driver.net.']
 ICON_FALLBACK = os.path.join(xbmc.translatePath(PATH), 'resources', 'fallback.png')
 ICON_DEFAULT = os.path.join(xbmc.translatePath(PATH), 'resources', 'default.png')

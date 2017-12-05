@@ -3,7 +3,10 @@ import os
 
 ADDON_TYPE = 'xbmc.service'
 SIGNATURES = ['driver.dvb.', 'driver.video.', 'driver.net.']
+
+# Addon Id's in this list should not appear in driver selection menue
 EXCLUDES = ['driver.dvb.sundtek-mediatv', 'driver.dvb.hdhomerun']
+
 ICON_FALLBACK = os.path.join(xbmc.translatePath(PATH), 'resources', 'fallback.png')
 ICON_DEFAULT = os.path.join(xbmc.translatePath(PATH), 'resources', 'default.png')
 

@@ -1,8 +1,9 @@
 from resources.lib.tools import *
 import os
 
-ADDON_TYPE = 'xbmc.python.module'
+ADDON_TYPE = 'xbmc.service'
 SIGNATURES = ['driver.dvb.', 'driver.video.', 'driver.net.']
+EXCLUDES = ['driver.dvb.sundtek-mediatv', 'driver.dvb.hdhomerun']
 ICON_FALLBACK = os.path.join(xbmc.translatePath(PATH), 'resources', 'fallback.png')
 ICON_DEFAULT = os.path.join(xbmc.translatePath(PATH), 'resources', 'default.png')
 
@@ -62,7 +63,7 @@ if modules is not None:
         gui_list[group].append(liz)
 
         for module in modules['addons']:
-            if not signature in module.get('addonid', ''): continue
+            if not signature in module.get('addonid', '') or module.get('addonid', '') in EXCLUDES: continue
             liz = xbmcgui.ListItem(label=module.get('name') or LS(30017),
                                    label2=module.get('description') or LS(30016),
                                    iconImage=module.get('thumbnail', ICON_FALLBACK))

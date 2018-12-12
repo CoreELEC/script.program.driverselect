@@ -18,8 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgctxt "#30010"
-msgid "LibreELEC driver select"
-msgstr "LibreELEC driver select"
+msgid "CoreELEC driver select"
+msgstr "CoreELEC driver select"
 
 msgctxt "#30011"
 msgid "Select driver module"
@@ -74,8 +74,8 @@ msgid "Choose network driver module"
 msgstr "Netzwerk Treiber Modul auswählen"
 
 msgctxt "#30024"
-msgid "LE default drivers"
-msgstr "LE Standard Treiber"
+msgid "CoreELEC default drivers"
+msgstr "CoreELEC Standard Treiber"
 
 msgctxt "#30025"
 msgid "DVB drivers from standard package"

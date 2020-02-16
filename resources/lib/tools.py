@@ -20,15 +20,15 @@ NUM = 2
 def writeLog(message, level=xbmc.LOGDEBUG):
     xbmc.log('[%s %s] %s' % (xbmcaddon.Addon().getAddonInfo('id'),
                              xbmcaddon.Addon().getAddonInfo('version'),
-                             message.encode('utf-8')), level)
+                             message), level)
 
 
 def notify(header, message, icon=xbmcgui.NOTIFICATION_INFO, dispTime=5000):
-    xbmcgui.Dialog().notification(header.encode('utf-8'), message.encode('utf-8'), icon=icon, time=dispTime)
+    xbmcgui.Dialog().notification(header, message, icon=icon, time=dispTime)
 
 
 def release():
-    item = {}
+    item = dict()
     coll = {'platform': platform.system(), 'hostname': platform.node()}
     if coll['platform'] == 'Linux':
         with open('/etc/os-release', 'r') as _file:
@@ -41,15 +41,15 @@ def release():
 
 
 def dialogOK(header, message):
-    return xbmcgui.Dialog().ok(header.encode('utf-8'), message.encode('utf-8'))
+    return xbmcgui.Dialog().ok(header, message)
 
 
 def dialogYesNo(header, message):
-    return xbmcgui.Dialog().yesno(header.encode('utf-8'), message.encode('utf-8'))
+    return xbmcgui.Dialog().yesno(header, message)
 
 
 def dialogSelect(header, itemlist, preselect=-1, useDetails=False):
-    return xbmcgui.Dialog().select(header.encode('utf-8'), itemlist, preselect=preselect, useDetails=useDetails)
+    return xbmcgui.Dialog().select(header, itemlist, preselect=preselect, useDetails=useDetails)
 
 
 def jsonrpc(query):
@@ -58,8 +58,8 @@ def jsonrpc(query):
     try:
         response = json.loads(xbmc.executeJSONRPC(json.dumps(querystring, encoding='utf-8')))
         if 'result' in response: return response['result']
-    except TypeError, e:
-        writeLog('Error executing JSON RPC: %s' % (e.message), xbmc.LOGFATAL)
+    except TypeError as e:
+        writeLog('Error executing JSON RPC: %s' % (e), xbmc.LOGERROR)
     return None
 
 

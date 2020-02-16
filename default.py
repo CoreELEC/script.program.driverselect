@@ -50,8 +50,8 @@ modules = jsonrpc(query)
 
 if modules is not None:
     writeLog('collect modules')
-    gui_list = []
-    selections = []
+    gui_list = list()
+    selections = list()
 
     # collect all services, discard services without driver.*. signature
 
@@ -85,7 +85,7 @@ if modules is not None:
     # build main list, discard empty module lists
 
     group = 0
-    MainItems = []
+    MainItems = list()
     for items in gui_list:
         if len(items) > 1: MainItems.append(LS(30021 + group))
         group += 1

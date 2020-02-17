@@ -56,7 +56,7 @@ def jsonrpc(query):
     querystring = {"jsonrpc": "2.0", "id": 1}
     querystring.update(query)
     try:
-        response = json.loads(xbmc.executeJSONRPC(json.dumps(querystring, encoding='utf-8')))
+        response = json.loads(xbmc.executeJSONRPC(json.dumps(querystring)))
         if 'result' in response: return response['result']
     except TypeError as e:
         writeLog('Error executing JSON RPC: %s' % (e), xbmc.LOGERROR)

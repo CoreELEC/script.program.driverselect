@@ -68,8 +68,8 @@ if modules is not None:
         for module in modules['addons']:
             if not signature in module.get('addonid', '') or module.get('addonid', '') in EXCLUDES: continue
             liz = xbmcgui.ListItem(label=module.get('name') or LS(30017),
-                                   label2=module.get('description') or LS(30016),
-                                   iconImage=module.get('thumbnail', ICON_FALLBACK))
+                                   label2=module.get('description') or LS(30016))
+            liz.setArt({'icon': module.get('thumbnail', ICON_FALLBACK)})
             if module.get('enabled', False):
                 selections[group] = item
             liz.setProperty('addonid', module.get('addonid'))

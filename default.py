@@ -61,7 +61,8 @@ if modules is not None:
         selections.append(-1)
         item = 1
 
-        liz = xbmcgui.ListItem(label=LS(30024), label2=LS(30025 + group), iconImage=ICON_DEFAULT)
+        liz = xbmcgui.ListItem(label=LS(30024), label2=LS(30025 + group))
+        liz.setArt({'icon': ICON_DEFAULT})
         liz.setProperty('addonid', 'dummy')
         gui_list[group].append(liz)
 

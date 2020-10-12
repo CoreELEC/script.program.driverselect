@@ -18,7 +18,7 @@ def set_addon(module, enabled):
              "params": {"addonid": module, "enabled": enabled}}
     response = jsonrpc(query)
     if response == 'OK':
-        writeLog('driver module \'%s\' %s' % (module, 'enabled' if enabled else 'disabled'), xbmc.LOGNOTICE)
+        writeLog('driver module \'%s\' %s' % (module, 'enabled' if enabled else 'disabled'), xbmc.LOGINFO)
         return True
     else:
         writeLog('could not %s driver module \'%s\'' % ('enable' if enabled else 'disable', module), xbmc.LOGERROR)
@@ -33,7 +33,7 @@ def ask_for_reboot(msgid):
                  "params": {}}
         response = jsonrpc(query)
         if response == 'OK':
-            writeLog('system will now reboot', xbmc.LOGNOTICE)
+            writeLog('system will now reboot', xbmc.LOGINFO)
         else:
             writeLog('could not reboot', xbmc.LOGERROR)
     else:
@@ -42,7 +42,7 @@ def ask_for_reboot(msgid):
 
 # main
 
-writeLog('starting addon', xbmc.LOGNOTICE)
+writeLog('starting addon', xbmc.LOGINFO)
 query = {"method": "Addons.GetAddons",
          "params": {"type": ADDON_TYPE,
                     "properties": ["description", "enabled", "name", "path", "thumbnail", "version"]}}
@@ -61,15 +61,16 @@ if modules is not None:
         selections.append(-1)
         item = 1
 
-        liz = xbmcgui.ListItem(label=LS(30024), label2=LS(30025 + group), iconImage=ICON_DEFAULT)
+        liz = xbmcgui.ListItem(label=LS(30024), label2=LS(30025 + group))
+        liz.setArt({'icon':ICON_DEFAULT})
         liz.setProperty('addonid', 'dummy')
         gui_list[group].append(liz)
 
         for module in modules['addons']:
             if not signature in module.get('addonid', '') or module.get('addonid', '') in EXCLUDES: continue
             liz = xbmcgui.ListItem(label=module.get('name') or LS(30017),
-                                   label2=module.get('description') or LS(30016),
-                                   iconImage=module.get('thumbnail', ICON_FALLBACK))
+                                   label2=module.get('description') or LS(30016))
+            liz.setArt({'icon':module.get('thumbnail', ICON_FALLBACK)})
             if module.get('enabled', False):
                 selections[group] = item
             liz.setProperty('addonid', module.get('addonid'))

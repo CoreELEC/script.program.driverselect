@@ -4,10 +4,11 @@ import xbmcaddon
 import json
 import platform
 import re
+import xbmcvfs
 
 ADDON_NAME = xbmcaddon.Addon().getAddonInfo('name')
 PATH = xbmcaddon.Addon().getAddonInfo('path')
-PROFILE = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
+PROFILE = xbmcvfs.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
 LS = xbmcaddon.Addon().getLocalizedString
 
 # Constants
